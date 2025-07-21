@@ -7,6 +7,12 @@ local hrp = character:WaitForChild("HumanoidRootPart")
 local SHIRT_ID = "rbxassetid://16928995378"  -- Ваша майка
 local PANTS_ID = "rbxassetid://16929011359"  -- Ваши штаны
 
+local humanoid = character:FindFirstChildOfClass("Humanoid")
+    if humanoid then
+        humanoid.WalkSpeed = 16
+        humanoid.JumpPower = 0
+end
+
 -- Загрузка модели из вставки
 local success, model = pcall(function()
 	return game:GetObjects("rbxassetid://104923566455281")[1]
