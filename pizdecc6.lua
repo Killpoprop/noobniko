@@ -213,17 +213,6 @@ end
 
 bindModelToCharacter(model)
 
-for _, part in ipairs(character:GetChildren()) do
-	if part:IsA("Accessory") or part:IsA("Hat") or
-	   part:IsA("Shirt") or part:IsA("Pants") or part:IsA("ShirtGraphic") then
-		part:Destroy()
-	elseif (part:IsA("BasePart") or part:IsA("MeshPart")) and part ~= hrp and not model:IsAncestorOf(part) then
-		part:Destroy()
-	end
-end
-
-print("Модель успешно загружена с анимациями и оригинал удалён.")
-
 -- Функция очистки при удалении персонажа
 player.CharacterRemoving:Connect(function()
 	for part, weld in pairs(boneConnections) do
