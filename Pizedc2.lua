@@ -65,7 +65,21 @@ local function attachNoliModel()
 
 	local model = result:Clone()
 	model.Name = "NoliModel"
-	model.PrimaryPart = model:FindFirstChild("HumanoidRootPart") or model:FindFirstChild("Torso") or model:FindFirstChildWhichIsA("BasePart")
+	-- Назначаем PrimaryPart, если он не задан
+if not model.PrimaryPart then
+	local tryPart = model:FindFirstChild("HumanoidRootPart") 
+	              or model:FindFirstChild("Torso") 
+	              or model:FindFirstChild("UpperTorso") 
+	              or model:FindFirstChildWhichIsA("BasePart")
+
+	if tryPart then
+		model.PrimaryPart = tryPart
+	else
+		warn("❌ Модель Noli не содержит ни одной подходящей части для установки PrimaryPart!")
+		showDebugMessage("❌ Нет PrimaryPart у модели", Color3.fromRGB(255, 0, 0))
+		return
+	end
+end
 
 	if not model.PrimaryPart then
 		showDebugMessage("❌ У модели Noli нет PrimaryPart", Color3.fromRGB(255, 0, 0))
